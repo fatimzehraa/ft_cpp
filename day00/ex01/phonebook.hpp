@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fatimzehra </var/spool/mail/fatimzehra>    +#+  +:+       +#+        */
+/*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 23:02:53 by fatimzehra        #+#    #+#             */
-/*   Updated: 2022/12/17 12:38:20 by fatimzehra       ###   ########.fr       */
+/*   Created: 2023/01/01 17:21:43 by fael-bou          #+#    #+#             */
+/*   Updated: 2023/01/01 22:33:52 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class phonebook
 		phonebook();
 		void add();
 		void show_contacts();
-		contact *search(contact contacts[], contact mycontact);
+		void search(int index);
 		~phonebook();
 };
 

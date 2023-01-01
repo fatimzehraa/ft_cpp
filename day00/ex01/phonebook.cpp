@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fatimzehra </var/spool/mail/fatimzehra>    +#+  +:+       +#+        */
+/*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 12:37:03 by fatimzehra        #+#    #+#             */
-/*   Updated: 2022/12/17 13:19:09 by fatimzehra       ###   ########.fr       */
+/*   Created: 2023/01/01 17:25:02 by fael-bou          #+#    #+#             */
+/*   Updated: 2023/01/01 22:54:41 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "contact.hpp"
 #include <iostream>
 #include <ostream>
+#include <iomanip>
 
 phonebook::phonebook(){
 	std::cout << "phonebook constructor" << std::endl;
@@ -53,7 +54,6 @@ void phonebook::add(){
 	contacts[size].set_darkest_secret(darkest_secret);
 	size++;
 }
-#include <iomanip>
 void trim(std::string s){
 	if (s.size() < 10) {
 		std::cout << "|" << std::setw(10) << s;
@@ -68,24 +68,30 @@ void trim(std::string s){
 }
 
 void phonebook::show_contacts(){
-	std::cout << "|first name| last name|  nickname|phone num.|darkest s.|" << std::endl;
-	for (int i = 0; i < size; i++) {
+	std::cout << "|     index|first name| last name|  nickname|" << std::endl;
+	for (int i = 0; i < this->size; i++) {
+		std::cout << "|" << std::setw(10) << i ;
 		trim(contacts[i].get_first_name());
 		trim(contacts[i].get_last_name());
 		trim(contacts[i].get_nickname());
-		trim(contacts[i].get_phone_number());
-		trim(contacts[i].get_darkest_secret());
 		std::cout << "|" << std::endl;
 	}
 }
 
-contact* phonebook::search(contact contacts[], contact mycontact){
+void phonebook::search(int index){
 	for (int i = 0; i < size; i++) {
-		if (mycontact.get_first_name().compare(contacts[i].get_first_name())) {
-			return contacts + i;
+		if (index == i){
+			std::cout << "|     index|first name| last name|  nickname|phone num.|darkest s.|" << std::endl;
+			std::cout << "|" << std::setw(10) << i ;
+			trim(contacts[i].get_first_name());
+			trim(contacts[i].get_last_name());
+			trim(contacts[i].get_nickname());
+			trim(contacts[i].get_phone_number());
+			trim(contacts[i].get_darkest_secret());
+			std::cout << "|" << std::endl;
 		}
 	}
-	return NULL;
+//	return NULL;
 }
 phonebook::~phonebook(){
 	std::cout << "phonebook destructor" << std::endl;

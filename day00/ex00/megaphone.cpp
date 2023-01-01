@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fatimzehra </var/spool/mail/fatimzehra>    +#+  +:+       +#+        */
+/*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 12:04:46 by fatimzehra        #+#    #+#             */
-/*   Updated: 2022/12/06 12:16:52 by fatimzehra       ###   ########.fr       */
+/*   Created: 2023/01/01 17:10:17 by fael-bou          #+#    #+#             */
+/*   Updated: 2023/01/01 17:10:23 by fael-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #include <iostream>
 #include <ostream>
 #include <cstring>
+#include <sys/_types/_size_t.h>
 
 void megaphone(char *str)
 {
-	int i = 0;
+	size_t i = 0;
 
 	for(i = 0; i < strlen(str); i++)
 	{
