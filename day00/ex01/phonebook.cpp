@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fael-bou <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 17:25:02 by fael-bou          #+#    #+#             */
-/*   Updated: 2023/01/01 22:54:41 by fael-bou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "phonebook.hpp"
 #include "contact.hpp"
 #include <iostream>
@@ -33,24 +21,28 @@ void phonebook::add(){
 	if (size == 8)
 		size = 0;
 	std::cout << "enter first name" << std::endl;
-	getline(std::cin,first_name);
+	std::cin >> first_name;
+	std::cin.sync();
 	contacts[size].set_first_name(first_name);
-	std::cout << contacts[size].get_first_name() << std::endl;
 
 	std::cout << "enter last name" << std::endl;
-	getline(std::cin,last_name);
+	std::cin >> last_name;
+	std::cin.sync();
 	contacts[size].set_last_name(last_name);
 
 	std::cout << "enter nickname" << std::endl;
-	getline(std::cin,nickname);
+	std::cin >> nickname;
+	std::cin.sync();
 	contacts[size].set_nickname(nickname);
 
 	std::cout << "enter phone number" << std::endl;
-	getline(std::cin, phone_number);
+	std::cin >> phone_number;
+	std::cin.sync();
 	contacts[size].set_phone_number(phone_number);
 
 	std::cout << "enter darkest secret" << std::endl;
-	getline(std::cin, darkest_secret);
+	std::cin >> darkest_secret;
+	std::cin.sync();
 	contacts[size].set_darkest_secret(darkest_secret);
 	size++;
 }
