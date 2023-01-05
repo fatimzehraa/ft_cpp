@@ -2,11 +2,9 @@
 
 int main()
 {
-	Zombie foo("foo");
-	foo.announce();
-	Zombie *z = new Zombie("hala");
-	newZombie("bar");
+	Zombie *z = newZombie("bar");
+	z->announce();
 	randomChump("naah");
-	(void)z;
+	delete z;
 	return (0);
 }
