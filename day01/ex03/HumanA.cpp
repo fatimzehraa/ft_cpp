@@ -2,6 +2,7 @@
 
 HumanA::HumanA(std::string name, Weapon &weapon) : weapon(weapon)
 {
+	std::cout << "HumanA constructor called" << std::endl;
 	this->name = name;
 }
 

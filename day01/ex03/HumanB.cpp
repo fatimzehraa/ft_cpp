@@ -2,19 +2,22 @@
 
 HumanB::HumanB(std::string name)
 {
+	std::cout << "HumanB constructor called" << std::endl;
 	this->name = name;
+	this->weapon = NULL;
 }
 
-void HumanB::setWeapon(Weapon weapon)
+void HumanB::setWeapon(Weapon &weapon)
 {
-	this->weapon = weapon;
+	this->weapon = &weapon;
 }
 
 void HumanB::attack()
 {
-	std::cout << name << " attacks with their " << weapon.getType() << std::endl;
+	if (weapon)
+		std::cout << name << " attacks with their " << weapon->getType() << std::endl;
 }
 
 HumanB::~HumanB(){
-	std::cout << "HumanA destructor called" << std::endl;
+	std::cout << "HumanB destructor called" << std::endl;
 }
