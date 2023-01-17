@@ -21,7 +21,29 @@ public:
 	int toInt() const;
 	void setRawBits( int const raw );
 	int getRawBits( void ) const;
-	Fixed operator * (Fixed &);
+//arithmetic operators
+	float operator * (Fixed const &);
+    float operator+(Fixed const &);
+    float operator-(Fixed const &);
+    float operator/(Fixed const &);
+//comparison operators
+    int operator>(Fixed const &);
+    int operator<(Fixed const &);
+    int operator>=(Fixed const &);
+    int operator<=(Fixed const &);
+    int operator==(Fixed const &);
+    int operator!=(Fixed const &);
+//increament decreament operators
+    Fixed operator++();
+    Fixed operator++(int);
+    Fixed operator--(int);
+    Fixed operator--();
+//min max
+    Fixed &min(Fixed &obj1, Fixed &obj2);
+    Fixed &min(Fixed const &obj1, Fixed const &obj2);
+   static Fixed &max(Fixed &obj1, Fixed &obj2);
+   static Fixed &max(Fixed const &obj1, Fixed const &obj2);
+
 //destructor
 	~Fixed();
 

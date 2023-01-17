@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fatimzehra </var/spool/mail/fatimzehra>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 22:27:46 by fatimzehra        #+#    #+#             */
+/*   Updated: 2023/01/17 22:53:17 by fatimzehra       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 #include <cmath>
 #include <iostream>
@@ -6,32 +18,32 @@
 
 Fixed::Fixed()
 {
-	std::cout << "defeault constructor called" << std::endl;
+//	std::cout << "defeault constructor called" << std::endl;
 	fixed_point = 0;
 }
 
 Fixed::Fixed(const int x)
 {
-	std::cout << "int constructor called" << std::endl;
+//	std::cout << "int constructor called" << std::endl;
 	fixed_point = x << 8; // *2(8) 
 }
 
 Fixed::Fixed(const float x)
 {
-	std::cout << "float constructor called" << std::endl;
+//	std::cout << "float constructor called" << std::endl;
 	fixed_point = roundf(x * 256); // *2(8)
 }
 
 Fixed::Fixed(const Fixed &old_obj)
 {
-	std::cout << "coppy constructor called" << std::endl;
+//	std::cout << "coppy constructor called" << std::endl;
 	//this->fixed_point = old_obj.fixed_point;
 	*this = old_obj;
 }
 
 Fixed &Fixed::operator=(Fixed const &old_obj)
 {
-	std::cout << "copy assignment operator called" << std::endl;
+//	std::cout << "copy assignment operator called" << std::endl;
 	//*this = old_obj;
 	this->fixed_point = old_obj.getRawBits();
 	return *this ;
@@ -66,18 +78,131 @@ int Fixed::getRawBits() const
 	return fixed_point;
 }
 
-Fixed Fixed::operator* (Fixed &obj1)
+float Fixed::operator* (Fixed const &obj1)
 {
-	Fixed res;
-	res.fixed_point = this->fixed_point * obj1.fixed_point;
-	return res;
+	float new_float;
+	new_float = this->toFloat() * obj1.toFloat();
+	return new_float;
 }
 
+float Fixed::operator+(Fixed const &obj1)
+{
+	float new_float;
+	new_float = this->toFloat() + obj1.toFloat();
+	return new_float;
+}
+
+float Fixed::operator-(Fixed const &obj1)
+{
+	float new_float;
+	new_float = this->toFloat() - obj1.toFloat();
+	return new_float;
+}
+
+float Fixed::operator/(Fixed const &obj1)
+{
+	float new_float;
+	new_float = this->toFloat() / obj1.toFloat();
+	return new_float;
+}
+
+//comparison operators
+
+int Fixed::operator>(Fixed const &obj1)
+{
+	return(this->fixed_point > obj1.fixed_point);
+}
+
+int Fixed::operator<(Fixed const &obj1)
+{
+	return(this->fixed_point < obj1.fixed_point);
+}
+
+int Fixed::operator>=(Fixed const &obj1)
+{
+	return(this->fixed_point >= obj1.fixed_point);
+}
+
+int Fixed::operator<=(Fixed const &obj1)
+{
+	return(this->fixed_point <= obj1.fixed_point);
+}
+
+int Fixed::operator==(Fixed const &obj1)
+{
+	return(this->fixed_point == obj1.fixed_point);
+}
+
+int Fixed::operator!=(Fixed const &obj1)
+{
+	return(this->fixed_point != obj1.fixed_point);
+}
+
+//increment and decrement operators
+
+Fixed Fixed::operator++()
+{
+	Fixed new_obj;
+	new_obj.fixed_point = ++fixed_point;
+	return new_obj;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed new_obj;
+	new_obj.fixed_point = fixed_point++;
+	return new_obj;
+}
+
+Fixed Fixed::operator--()
+{
+	Fixed new_obj;
+	new_obj.fixed_point = --fixed_point;
+	return new_obj;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed new_obj;
+	new_obj.fixed_point = fixed_point--;
+	return new_obj;
+}
+
+ /* static member functions min/max */
+  
+Fixed &Fixed:: min(Fixed &obj1, Fixed & obj2) {
+    if (obj1.fixed_point < obj2.fixed_point)
+        return (obj1);
+    else
+        return (obj2);
+}
+
+ Fixed &Fixed:: min(Fixed const &obj1, Fixed const & obj2 ) {
+    if ((Fixed)obj1.fixed_point < obj2.fixed_point)
+        return ((Fixed &)obj1);
+    else
+        return ((Fixed &)obj2);
+}
+
+Fixed &Fixed:: max(Fixed &obj1, Fixed & obj2) {
+    if (obj1.fixed_point > obj2.fixed_point)
+        return (obj1);
+    else
+        return (obj2);
+}
+
+Fixed &Fixed:: max(Fixed const &obj1, Fixed const & obj2 ) {
+    if ((Fixed)obj1.fixed_point > obj2.fixed_point)
+        return ((Fixed &)obj1);
+    else
+        return ((Fixed &)obj2);
+}
+//destructor
 Fixed::~Fixed()
 {
-	std::cout << "destructor called" << std::endl;
+//	std::cout << "destructor called" << std::endl;
 }
-
+//<< operator overload
 std::ostream &operator << (std::ostream &out, Fixed const &f)
 {
 	out << f.toFloat();
