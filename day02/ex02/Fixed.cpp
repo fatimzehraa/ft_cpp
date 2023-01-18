@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fatimzehra </var/spool/mail/fatimzehra>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 22:27:46 by fatimzehra        #+#    #+#             */
-/*   Updated: 2023/01/17 22:53:17 by fatimzehra       ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Fixed.hpp"
 #include <cmath>
 #include <iostream>
@@ -101,9 +89,15 @@ float Fixed::operator-(Fixed const &obj1)
 
 float Fixed::operator/(Fixed const &obj1)
 {
-	float new_float;
-	new_float = this->toFloat() / obj1.toFloat();
-	return new_float;
+	if (obj1.toFloat() != 0) {
+		float new_float;
+		new_float = this->toFloat() / obj1.toFloat();
+		return new_float;
+	}
+	else {
+		std::cout << "you can't devide by zero" << std::endl;
+        return 0.0;
+    }
 }
 
 //comparison operators
@@ -140,11 +134,10 @@ int Fixed::operator!=(Fixed const &obj1)
 
 //increment and decrement operators
 
-Fixed Fixed::operator++()
+Fixed &Fixed::operator++()
 {
-	Fixed new_obj;
-	new_obj.fixed_point = ++fixed_point;
-	return new_obj;
+	++fixed_point;
+	return *this;
 }
 
 Fixed Fixed::operator++(int)
@@ -154,11 +147,10 @@ Fixed Fixed::operator++(int)
 	return new_obj;
 }
 
-Fixed Fixed::operator--()
+Fixed &Fixed::operator--()
 {
-	Fixed new_obj;
-	new_obj.fixed_point = --fixed_point;
-	return new_obj;
+	--fixed_point;
+	return *this;
 }
 
 Fixed Fixed::operator--(int)
@@ -178,7 +170,7 @@ Fixed &Fixed:: min(Fixed &obj1, Fixed & obj2) {
 }
 
  Fixed &Fixed:: min(Fixed const &obj1, Fixed const & obj2 ) {
-    if ((Fixed)obj1.fixed_point < obj2.fixed_point)
+    if (obj1.fixed_point < obj2.fixed_point)
         return ((Fixed &)obj1);
     else
         return ((Fixed &)obj2);
@@ -192,7 +184,7 @@ Fixed &Fixed:: max(Fixed &obj1, Fixed & obj2) {
 }
 
 Fixed &Fixed:: max(Fixed const &obj1, Fixed const & obj2 ) {
-    if ((Fixed)obj1.fixed_point > obj2.fixed_point)
+    if (obj1.fixed_point > obj2.fixed_point)
         return ((Fixed &)obj1);
     else
         return ((Fixed &)obj2);

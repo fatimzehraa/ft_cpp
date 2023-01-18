@@ -9,9 +9,7 @@ private:
 	
 public:
 	Fixed();
-	//Fixed(Fixed &&) = default;
 	Fixed(const Fixed &);
-	//Fixed &operator=(Fixed &&) = default;
 	Fixed &operator=(const Fixed &);
 	void setRawBits( int const raw );
 	int getRawBits( void ) const;

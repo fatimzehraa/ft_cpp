@@ -34,10 +34,10 @@ public:
     int operator==(Fixed const &);
     int operator!=(Fixed const &);
 //increament decreament operators
-    Fixed operator++();
+    Fixed &operator++();
     Fixed operator++(int);
     Fixed operator--(int);
-    Fixed operator--();
+    Fixed &operator--();
 //min max
     Fixed &min(Fixed &obj1, Fixed &obj2);
     Fixed &min(Fixed const &obj1, Fixed const &obj2);
