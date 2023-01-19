@@ -39,10 +39,10 @@ public:
     Fixed operator--(int);
     Fixed &operator--();
 //min max
-    Fixed &min(Fixed &obj1, Fixed &obj2);
-    Fixed &min(Fixed const &obj1, Fixed const &obj2);
-   static Fixed &max(Fixed &obj1, Fixed &obj2);
-   static Fixed &max(Fixed const &obj1, Fixed const &obj2);
+	Fixed &min(Fixed &obj1, Fixed &obj2);
+	static Fixed &min(Fixed const &obj1, Fixed const &obj2);
+	Fixed &max(Fixed &obj1, Fixed &obj2);
+	static Fixed &max(Fixed const &obj1, Fixed const &obj2);
 
 //destructor
 	~Fixed();
