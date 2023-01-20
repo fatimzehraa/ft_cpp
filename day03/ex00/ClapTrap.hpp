@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 class ClapTrap
 {
@@ -11,10 +12,18 @@ private:
 public:
 	ClapTrap();
 	ClapTrap(std::string);
-	//ClapTrap(ClapTrap &&) = default;
 	ClapTrap(const ClapTrap &);
-	//ClapTrap &operator=(ClapTrap &&) = default;
 	ClapTrap &operator=(const ClapTrap &);
+	//setters
+	void set_name(std::string name);
+	void set_hit(int);
+	void set_energy(int);
+	void set_attack(int);
+	//getters
+	std::string get_name();
+	int get_hit();
+	int get_energy();
+	int get_attack();
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
