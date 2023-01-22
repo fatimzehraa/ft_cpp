@@ -2,9 +2,9 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address
 
 #inc = -I./
-OBJ = main.o ClapTrap.o ScavTrap.o
-INC = ClapTrap.hpp ScavTrap.hpp
-NAME = ScavTrap
+OBJ = main.o ClapTrap.o ScavTrap.o FragTrap.o
+INC = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+NAME = FragTrap
 
 all: $(NAME)
 
