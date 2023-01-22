@@ -71,7 +71,7 @@ void ClapTrap::takeDamage(unsigned int amount){
 	if (energy_points == 0 || hit_points == 0)
 		std::cout << "no energy/hit points left" << std::endl;
 	else{
-		this->attack_damage += amount;
+		//this->attack_damage += amount;
 		this->hit_points -= amount;//When ClapTrack attacks, it causes its target to lose <attack damage> hit points.
 		std::cout << "ClapTrap " << name << " took " << amount << " points of damage." << std::endl;
 	}
