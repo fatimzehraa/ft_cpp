@@ -1,9 +1,13 @@
 #include "Animal.hpp"
 #include <string>
 
-Animal::Animal()
-{
-	std::cout << "Animal constructor called" << std::endl;
+Animal::Animal(){
+	std::cout << "Animal defeault constructor called" << std::endl;
+}
+
+Animal::Animal(std::string type){
+	std::cout << "Animal constructor overload called" << std::endl;
+	this->type = type;
 }
 
 Animal::Animal(Animal const &old_obj)
@@ -16,11 +20,11 @@ Animal & Animal::operator=(Animal const &old_obj){
 	return *this;
 }
 
-void Animal::settype(std::string new_type){
+void Animal::setType(std::string new_type){
 	type = new_type;
 }
 
-std::string Animal::gettype(){
+std::string Animal::getType() const {
 	return type;
 }
 
