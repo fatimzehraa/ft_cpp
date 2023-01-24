@@ -8,7 +8,7 @@ public:
 	Cat();
 	Cat(const Cat &);
 	Cat &operator=(const Cat &);
-	void makeSound();
+	void makeSound() const;
 	~Cat();
 
 private:

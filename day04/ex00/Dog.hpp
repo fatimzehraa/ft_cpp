@@ -8,7 +8,7 @@ public:
 	Dog();
 	Dog(const Dog &);
 	Dog &operator=(const Dog &);
-	void makeSound();
+	void makeSound() const;
 	~Dog();
 
 private:
