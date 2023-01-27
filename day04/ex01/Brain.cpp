@@ -23,6 +23,16 @@ Brain &Brain::operator=(const Brain &brain)
 	return *this;
 }
 
+void Brain::set_ideas(std::string ideas[100]){
+	for (int i = 0; i < 100; i++) {
+		this->ideas[i] = ideas[i];
+	}
+}
+
+std::string *Brain::get_ideas(){
+	return(this->ideas);
+}
+
 Brain::~Brain()
 {
 	std::cout << "Brain destructor called" << std::endl;

@@ -9,6 +9,8 @@ public:
 	Brain(Brain&);
 	Brain(const Brain &);
 	Brain&operator=(const Brain&);
+	void set_ideas(std::string ideas[100]);
+	std::string *get_ideas();
 	~Brain();
  
 protected:

@@ -10,8 +10,7 @@ int main()
 	std::cout << sova.getbrain() << std::endl;
 	Dog obie(sova);
 	std::cout << "obie" << obie.getbrain() << std::endl;
-	std::cout << "obie" << obie.getType() << std::endl;
-	/*
+	std::cout << "obie is a :" << obie.getType() << std::endl;
 	Animal *pack[2];
 	for (int i = 0; i < 2; i++) {
 		if (i < 1)
@@ -21,6 +20,6 @@ int main()
 	}
 	for (int i = 0; i < 2; i++) {
 		delete pack[i];
-	}*/
+	}
 	return 0;
 }
