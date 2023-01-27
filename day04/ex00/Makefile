@@ -2,8 +2,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 #inc = -I./
-OBJ = main.o Dog.o Cat.o Animal.o
-INC = Dog.hpp Cat.hpp Animal.hpp
+OBJ = main.o Dog.o Cat.o Animal.o WrongAnimal.o WrongCat.o
+INC = Dog.hpp Cat.hpp Animal.hpp WrongCat.hpp WrongAnimal.hpp
 NAME = Animals
 
 all: $(NAME)

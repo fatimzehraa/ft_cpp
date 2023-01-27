@@ -4,7 +4,7 @@
 Cat::Cat()
 {
 	std::cout << "Cat constructor called" << std::endl;
-	this->type = "cat";
+	this->type = "Cat";
 }
 
 Cat::Cat(Cat const &old_obj) : Animal(old_obj) {}
@@ -15,7 +15,7 @@ Cat& Cat::operator=(Cat const &old_obj){
 }
 
 void Cat::makeSound() const{
-	std::cout << "meow" << std::endl;
+	std::cout << this->getType() << ": meow" << std::endl;
 }
 
 Cat::~Cat()
