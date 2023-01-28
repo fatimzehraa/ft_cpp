@@ -14,21 +14,22 @@ public:
 	//setter
 	void beSigned();
 	//getters
-	std::string const getName();
-	const int getGrade();
-	const int get_Grade();
+	std::string const getName() const;
+	int getGrade()const;
+	int get_Grade()const;
+	bool getSigne()const;
 	~Form();
  
 protected:
 private:
 	std::string const name;
-	bool _signed = 0;
+	bool _signed;
 	const int grade;//signed
 	const int _grade;//executed
 	
 
 };
 
-std::ostream &operator << (std::ostream out, Form const f);
+std::ostream &operator << (std::ostream &out, Form const &f);
 
 #endif

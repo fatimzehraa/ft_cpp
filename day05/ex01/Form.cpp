@@ -1,12 +1,15 @@
 #include "Form.hpp"
+#include <ostream>
 
-Form::Form() : grade(5), _grade(4)
+Form::Form() : grade(1), _grade(1)
 {
+	this->_signed = false;
 	std::cout << "Form constructor called" << std::endl;
 }
 
 Form::Form(std::string const name, const int grade, const int _grade): name(name), grade(grade), _grade(_grade)
 {
+	this->_signed = false;
 	std::cout << "Form overloaded constructor called" << std::endl;
 }
 
@@ -25,11 +28,17 @@ Form &Form::operator=(const Form &form)
 //setter
 void Form::beSigned(){this->_signed = true;}
 //getters
-std::string const Form::getName(){return this->name;}
-const int Form::getGrade(){return this->grade;}
-const int Form::get_Grade(){return this->_grade;}
+std::string const Form::getName()const{return this->name;}
+int Form::getGrade()const{return this->grade;}
+int Form::get_Grade()const{return this->_grade;}
+bool Form::getSigne()const{return _signed;}
 
 Form::~Form()
 {
 	std::cout << "Form destructor called" << std::endl;
+}
+
+std::ostream &operator << (std::ostream &out, Form const &f){
+	out << f.getName() << " signed status: " << f.getSigne();
+	return out;
 }

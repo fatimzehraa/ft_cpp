@@ -2,8 +2,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 #inc = -I./
-OBJ = main.o Bureaucrat.o
-INC = Bureaucrat.hpp
+OBJ = main.o Bureaucrat.o Form.o
+INC = Bureaucrat.hpp Form.hpp
 NAME = Bureaucrat
 
 all: $(NAME)

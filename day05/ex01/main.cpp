@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main ()
 {
@@ -11,5 +12,7 @@ int main ()
 	catch (std::exception &e1) {
 		std::cout << e1.what() << std::endl;
 	}
+	Form f1;
+	std::cout << f1 << std::endl;
 	return 0;
 }
