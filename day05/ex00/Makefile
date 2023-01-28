@@ -2,7 +2,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 #inc = -I./
-OBJ = main.o Bureaucrat.cpp
+OBJ = main.o Bureaucrat.o
 INC = Bureaucrat.hpp
 NAME = Bureaucrat
 
