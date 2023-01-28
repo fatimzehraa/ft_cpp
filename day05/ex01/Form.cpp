@@ -25,7 +25,9 @@ Form &Form::operator=(const Form &form)
 //setter
 void Form::beSigned(){this->_signed = true;}
 //getters
-
+std::string const Form::getName(){return this->name;}
+const int Form::getGrade(){return this->grade;}
+const int Form::get_Grade(){return this->_grade;}
 
 Form::~Form()
 {
