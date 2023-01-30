@@ -1,0 +1,25 @@
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -g -std=c++98
+
+#inc = -I./
+OBJ = main.o Bureaucrat.o Form.o
+INC = Bureaucrat.hpp Form.hpp
+NAME = Bureaucrat
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $@
+
+%.o: %.cpp $(INC)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf *.o
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
