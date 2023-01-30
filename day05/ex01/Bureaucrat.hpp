@@ -3,6 +3,8 @@
 #include <exception>
 #include <iostream>
 #include <string>
+class Form;
+#include "Form.hpp"
 class Bureaucrat
 {
 public:
@@ -31,6 +33,7 @@ public:
 	//++ -- grade
 	void incrementGrade();
 	void decrementGrade();
+	void signForm(Form &f);
 	~Bureaucrat();
  
 protected:

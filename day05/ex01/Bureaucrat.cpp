@@ -45,14 +45,28 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 //++ -- grade
 void Bureaucrat::incrementGrade(){this->setGrade(grade--);}
 void Bureaucrat::decrementGrade(){this->setGrade(grade++);}
-
-std::ostream& operator << (std::ostream &output, Bureaucrat const &b){
-	output << b.getName() << ", bureaucrat grade " << b.getGrade();
-	return output;
+//class Form;
+void Bureaucrat::signForm( Form &f){
+	try {
+		f.beSigned(*this);
+		std::cout << this << " signed " << f << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+	/*
+	if (f.getSigne())
+		std::cout << this << " signed " << f << std::endl;
+		*/
 }
 
 //destructor
 Bureaucrat::~Bureaucrat()
 {
 	std::cout << "Bureaucrat destructor called" << std::endl;
+}
+
+std::ostream& operator << (std::ostream &output, Bureaucrat const &b){
+	output << b.getName() << ", bureaucrat grade " << b.getGrade();
+	return output;
 }
