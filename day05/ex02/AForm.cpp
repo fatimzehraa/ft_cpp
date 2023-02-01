@@ -42,6 +42,15 @@ int AForm::getGrade_sign()const{return this->grade_sign;}
 int AForm::getGrade_execute()const{return this->grade_execute;}
 bool AForm::getSigne()const{return _signed;}
 
+void AForm::check_req(Bureaucrat const &executer){
+	if (executer.getGrade() > this->grade_execute)
+		throw AForm::GradeTooLowException();
+	else
+		if (!this->_signed)
+			throw AForm::FormNotSignedException();
+	//execute
+}
+
 AForm::~AForm()
 {
 	std::cout << "AForm destructor called" << std::endl;
