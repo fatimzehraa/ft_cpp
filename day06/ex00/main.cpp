@@ -7,7 +7,14 @@ int main (int argc, char *argv[])
 		std::cerr << "bad argumets" << std::endl;
 	}
 	else{
-		ScalarConverter::ConvertToChar(argv[1]);
+		try {
+			ScalarConverter::ConvertToChar(argv[1]);
+			ScalarConverter::ConvertToInt(argv[1]);
+			
+		}
+		catch (const std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
 	}
 	return 0;
 }

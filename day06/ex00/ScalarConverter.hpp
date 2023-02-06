@@ -1,9 +1,17 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
+#include <exception>
 #include <iostream>
 class ScalarConverter
 {
 public:
+	/*
+	class NotChar : public std::exception{
+		public:
+			const char * what() const _NOEXCEPT{
+				return "not char";
+			}
+	};*/
 	static void ConvertToChar(std::string);
 	static void ConvertToInt(std::string);
 	static void ConvertToFloat(std::string);
@@ -18,4 +26,6 @@ private:
 protected:
 
 };
+
+int chartod(std::string c);
 #endif
