@@ -40,17 +40,15 @@ void ScalarConverter::ConvertToChar(std::string c){
 			std::cout << "char representation: " << static_cast<char>(a) << std::endl;	
 		}
 		else
-			std::cout << "message" << std::endl;
+			std::cerr << "bad argument" << std::endl;
 		//	throw ScalarConverter::NotChar();
 	}
-	else if (is_num(c)) {
+	else if (is_num(c))
 			std::cout << "char representation: " << static_cast<char>(std::atoi(c.c_str())) << std::endl;	
-		
-	}
 	else
 		std::cout << "char representation: undesplayable character" << std::endl;
 }
-
+#include <cstring>
 void ScalarConverter::ConvertToInt(std::string str){
 	if (is_char(str[0]) && !str[1]) {
 		int a = str[0];
@@ -60,12 +58,32 @@ void ScalarConverter::ConvertToInt(std::string str){
 		double d;
 		char *end = NULL;
 		d = std::strtod(str.c_str(), &end);
+		if (strcmp(end, "f") != 0) {
+			std::cerr << "bad argument" << std::endl;
+			return ;
+		}
 		std::cout << "int representation: " << static_cast<int>(d) << std::endl;
 		std::cout << "end = " << end << std::endl;
 	}
 }
 
-void ScalarConverter::ConvertToFloat(std::string str){}
+void ScalarConverter::ConvertToFloat(std::string str){
+	if (is_num(str)) {
+		std::cout << "float representation: " << str << std::endl;
+	}
+	else if (is_char(str[0]) && !str[1]) {
+		float a = str[0];
+		std::cout << "float representation: " << a << ".00f" << std::endl;
+	}
+	else{
+		double d;
+		char *end = NULL;
+		d = std::strtod(str.c_str(), &end);
+		std::cout << "float representation: " << static_cast<float>(d) << ".00f" << std::endl;
+		std::cout << "end = " << end << std::endl;
+	}
+
+}
 ScalarConverter::ScalarConverter()
 {
 	std::cout << "ScalarConverter constructor called" << std::endl;

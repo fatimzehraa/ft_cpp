@@ -10,6 +10,7 @@ int main (int argc, char *argv[])
 		try {
 			ScalarConverter::ConvertToChar(argv[1]);
 			ScalarConverter::ConvertToInt(argv[1]);
+			ScalarConverter::ConvertToFloat(argv[1]);
 			
 		}
 		catch (const std::exception& e) {
