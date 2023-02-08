@@ -28,7 +28,7 @@ protected:
 
 };
 
-int is_char(char c);
+bool is_char(char c);
 int is_num(std::string str);
 int chartod(std::string c);
 #endif

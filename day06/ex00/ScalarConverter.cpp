@@ -4,12 +4,13 @@
 #include <exception>
 #include <iostream>
 #include <string>
-
+#include <cstring>
+/*
 int is_char(char c){
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return 1;
 	return 0;
-}
+}*/
 
 int is_num(std::string str){
 	int len = str.length();
@@ -18,19 +19,20 @@ int is_num(std::string str){
 			if (!std::isdigit(str[i]) && str[i] != 'f')
 				return 0;
 		}
-		else if (!std::isdigit(str[i]))
+		else if (!std::isdigit(str[i]) && str[i] != '.')
 			return 0;
 	}
 	return 1;
 }
+
 void ScalarConverter::Convert(std::string input){
-	if (input == "nan" || input == "nanf") {
+	if (input.find('n') != std::string::npos && input.length() > 1) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: nanf" << std::endl;
-		std::cout << "double: nan" << std::endl;
+		std::cout << "float: " << input << std::endl;
+		std::cout << "double: " << input << std::endl;
 	}
-	else if (input == "+inf" || input == "+inff") {
+	/* else if (input == "+inf" || input == "+inff") {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: +inff" << std::endl;
@@ -41,33 +43,25 @@ void ScalarConverter::Convert(std::string input){
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: -inff" << std::endl;
 		std::cout << "double: -inf" << std::endl;
-	}
+	} */
 	else{
 		ConvertToChar(input);
 		ConvertToInt(input);
 		ConvertToFloat(input);
-	//	ConvertToDouble(input);
+		ConvertToDouble(input);
 	}
 }
 void ScalarConverter::ConvertToChar(std::string c){
-	if (is_char(c[0])){
-		if (!c[1]) {
-			int a = c[0];
-			std::cout << "char: '" << static_cast<char>(a) << "'" << std::endl;	
-		}
-		else
-			std::cerr << "bad argument" << std::endl;
-		//	throw ScalarConverter::NotChar();
-	}
-	else if (is_num(c)){
+	if (is_char(c[0]) && c[1] == '\0')
+			std::cout << "char: '" << c[0] << "'" << std::endl;	
+	else {
 		int a = std::atoi(c.c_str());
-		if (a > 31 && a < 128)
+		if (isprint(a))
 			std::cout << "char: '" << static_cast<char>(std::atoi(c.c_str())) << "'" << std::endl;	
 		else
 			std::cout << "char: undesplayable character" << std::endl;
 	}
 }
-#include <cstring>
 void ScalarConverter::ConvertToInt(std::string str){
 	if (is_char(str[0]) && !str[1]) {
 		int a = str[0];
@@ -77,30 +71,41 @@ void ScalarConverter::ConvertToInt(std::string str){
 		double d;
 		char *end = NULL;
 		d = std::strtod(str.c_str(), &end);
-		/*
-		if (strcmp(end, "f") != 0) {
-			std::cerr << "bad argument" << std::endl;
-			return ;
-		}*/
 		std::cout << "int: " << static_cast<int>(d) << std::endl;
-		std::cout << "end = " << end << std::endl;
 	}
 }
 
 void ScalarConverter::ConvertToFloat(std::string str){
-	if (is_num(str)) {
-		std::cout << "float: " << str << ".00f" << std::endl;
-	}
-	else if (is_char(str[0]) && !str[1]) {
+	if (is_char(str[0]) && !str[1]) {
 		float a = str[0];
-		std::cout << "float: " << a << ".00f" << std::endl;
+		std::cout << "float: " << a << ".0f" << std::endl;
 	}
 	else{
 		double d;
 		char *end = NULL;
 		d = std::strtod(str.c_str(), &end);
-		std::cout << "float: " << static_cast<float>(d) << ".00f" << std::endl;
-		std::cout << "end = " << end << std::endl;
+		if (d - (int)d == 0)
+			std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
+		else
+			std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+	//	std::cout << "end = " << end << std::endl;
+	}
+
+}
+void ScalarConverter::ConvertToDouble(std::string str){
+	if (is_char(str[0]) && !str[1]) {
+		float a = str[0];
+		std::cout << "double: " << a << std::endl;
+	}
+	else{
+		double d;
+		char *end = NULL;
+		d = std::strtod(str.c_str(), &end);
+		if(d - (int)d == 0)
+			std::cout << "double: " << static_cast<double>(d) << ".0" << std::endl;
+		else
+			std::cout << "double: " << static_cast<double>(d) << std::endl;
+	//	std::cout << "end = " << end << std::endl;
 	}
 
 }
