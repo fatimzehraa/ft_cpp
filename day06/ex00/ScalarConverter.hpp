@@ -12,6 +12,7 @@ public:
 				return "not char";
 			}
 	};*/
+	static void Convert(std::string);
 	static void ConvertToChar(std::string);
 	static void ConvertToInt(std::string);
 	static void ConvertToFloat(std::string);
@@ -27,5 +28,7 @@ protected:
 
 };
 
+int is_char(char c);
+int is_num(std::string str);
 int chartod(std::string c);
 #endif

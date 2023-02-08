@@ -3,14 +3,12 @@
 
 int main (int argc, char *argv[])
 {
-	if (argc != 2) {
+	if (argc != 2 || ((is_char(argv[1][0]) && argv[1][1] != 0) || !is_num(argv[1]))) {
 		std::cerr << "bad argumets" << std::endl;
 	}
 	else{
 		try {
-			ScalarConverter::ConvertToChar(argv[1]);
-			ScalarConverter::ConvertToInt(argv[1]);
-			ScalarConverter::ConvertToFloat(argv[1]);
+			ScalarConverter::Convert(argv[1]);
 			
 		}
 		catch (const std::exception& e) {
