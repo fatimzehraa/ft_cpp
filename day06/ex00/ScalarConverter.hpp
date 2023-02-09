@@ -2,16 +2,10 @@
 # define SCALARCONVERTER_HPP
 #include <exception>
 #include <iostream>
+#include "utils.h"
 class ScalarConverter
 {
 public:
-	/*
-	class NotChar : public std::exception{
-		public:
-			const char * what() const _NOEXCEPT{
-				return "not char";
-			}
-	};*/
 	static void Convert(std::string);
 	static void ConvertToChar(std::string);
 	static void ConvertToInt(std::string);
@@ -27,8 +21,4 @@ private:
 protected:
 
 };
-
-bool is_char(char c);
-int is_num(std::string str);
-int chartod(std::string c);
 #endif

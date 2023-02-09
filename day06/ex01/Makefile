@@ -1,11 +1,10 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address
 
-
 #inc = -I./
-OBJ = main.o ScalarConverter.o
-INC = ScalarConverter.hpp
-NAME = ScalarConverter
+OBJ = main.o Serializer.o
+INC = Serializer.hpp
+NAME = Serializer
 
 all: $(NAME)
 

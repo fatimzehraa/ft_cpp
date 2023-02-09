@@ -5,25 +5,6 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-/*
-int is_char(char c){
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return 1;
-	return 0;
-}*/
-
-int is_num(std::string str){
-	int len = str.length();
-	for (int i = 0; i < len; i++) {
-		if(i == len -1){
-			if (!std::isdigit(str[i]) && str[i] != 'f')
-				return 0;
-		}
-		else if (!std::isdigit(str[i]) && str[i] != '.')
-			return 0;
-	}
-	return 1;
-}
 
 void ScalarConverter::Convert(std::string input){
 	if (input.find('n') != std::string::npos && input.length() > 1) {
@@ -32,18 +13,6 @@ void ScalarConverter::Convert(std::string input){
 		std::cout << "float: " << input << std::endl;
 		std::cout << "double: " << input << std::endl;
 	}
-	/* else if (input == "+inf" || input == "+inff") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: +inff" << std::endl;
-		std::cout << "double: +inf" << std::endl;
-	}
-	else if (input == "-inf" || input == "-inff") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: -inff" << std::endl;
-		std::cout << "double: -inf" << std::endl;
-	} */
 	else{
 		ConvertToChar(input);
 		ConvertToInt(input);
@@ -95,7 +64,7 @@ void ScalarConverter::ConvertToFloat(std::string str){
 void ScalarConverter::ConvertToDouble(std::string str){
 	if (is_char(str[0]) && !str[1]) {
 		float a = str[0];
-		std::cout << "double: " << a << std::endl;
+		std::cout << "double: " << a << ".0" << std::endl;
 	}
 	else{
 		double d;

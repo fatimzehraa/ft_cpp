@@ -1,11 +1,10 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address
 
-
 #inc = -I./
-OBJ = main.o ScalarConverter.o
-INC = ScalarConverter.hpp
-NAME = ScalarConverter
+OBJ = main.o Base.o
+INC = Base.hpp A.hpp B.hpp C.hpp
+NAME = Identifier
 
 all: $(NAME)
 
