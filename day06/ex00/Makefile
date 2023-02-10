@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address
 
 #inc = -I./
 OBJ = main.o ScalarConverter.o
-INC = ScalarConverter.hpp
+INC = ScalarConverter.hpp utils.hpp
 NAME = ScalarConverter
 
 all: $(NAME)

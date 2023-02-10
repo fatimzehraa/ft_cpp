@@ -6,9 +6,21 @@
 #include <exception>
 
 Base* generate(){
-	A *a = new A;
-	Base* ptr = dynamic_cast<Base *>(a);
-	return ptr;
+    int rand = ((unsigned long) &rand % 3);
+    
+    switch (rand)
+    {
+           case 0:
+                std::cout << "generating type A...\n";
+                return (new A);
+            case 1:
+                std::cout << "generating type B...\n";
+                return (new B);
+            case 2:
+                std::cout << "generating type C...\n";
+                return (new C);
+    }
+    return (0);
 }
 
 void identify(Base *ptr){
@@ -18,50 +30,54 @@ void identify(Base *ptr){
 
 	a = dynamic_cast<A *>(ptr);
 	if (a != 0){
-		std::cout << "A" << std::endl;
+		std::cout << " casted to A" << std::endl;
 		return ;
 	}
 	b = dynamic_cast<B *>(ptr);
 	if (b != 0){
-		std::cout << "b" << std::endl;
+		std::cout << "casted to B" << std::endl;
 		return ;
 	}
 	c = dynamic_cast<C *>(ptr);
 	if (c != 0){
-		std::cout << "C" << std::endl;
+		std::cout << "casted to C" << std::endl;
 		return ;
-	}/*
-	else if (b != 0)
-		std::cout << "B" << std::endl;
-	else if (c != 0)
-		std::cout << "C" << std::endl;
-	else
-		std::cout << "message" << std::endl;
-	std::cout << "*ptr: " << ptr << std::endl;
-	delete a;
-	delete b;
-	delete c;
-	*/
+	}
 }
 
 void identify(Base &ptr){
-	A &a = dynamic_cast<A&>(ptr);
-	B &b = dynamic_cast<B&>(ptr);
-	C &c = dynamic_cast<C&>(ptr);
-	(void)a,(void)b,(void)c;
-	//std::cout << "&ptr: "<< &ptr << std::endl;
+	A a;
+	B b;
+	C c;
+
+	try {
+		a = dynamic_cast<A&>(ptr);
+		std::cout << " casted to A" << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << "A: " << e.what() << std::endl;
+	}
+	try {
+		b = dynamic_cast<B&>(ptr);
+		std::cout << " casted to B" << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << "B: " << e.what() << std::endl;
+	}
+	try {
+		c = dynamic_cast<C&>(ptr);
+		std::cout << " casted to C" << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << "C: " << e.what() << std::endl;
+	}
 }
 
 int main(){
 	Base *ptr;
 	ptr = generate();
 	identify(ptr);
-	try {
-		identify(*ptr);
-	}
-	catch (const std::exception& e) {
-		std::cout << e.what() << std::endl;
-	}
+	identify(*ptr);
 	delete ptr;
 	return 0;
 }

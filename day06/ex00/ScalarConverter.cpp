@@ -5,12 +5,17 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+//#include <string.h>
+#include "limits.h"
 
 void ScalarConverter::Convert(std::string input){
 	if (input.find('n') != std::string::npos && input.length() > 1) {
+		if (strstr(input.c_str(), "anf") || strstr(input.c_str(), "ff")) {
+			input = input.substr(0, input.length() - 1);
+		}
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << input << std::endl;
+		std::cout << "float: " << input << 'f' << std::endl;
 		std::cout << "double: " << input << std::endl;
 	}
 	else{
@@ -40,7 +45,10 @@ void ScalarConverter::ConvertToInt(std::string str){
 		double d;
 		char *end = NULL;
 		d = std::strtod(str.c_str(), &end);
-		std::cout << "int: " << static_cast<int>(d) << std::endl;
+		if (d > INT_MIN && d < INT_MAX)
+			std::cout << "int: " << static_cast<int>(d) << std::endl;
+		else
+			std::cout << "int: impossible" << std::endl;
 	}
 }
 
@@ -57,7 +65,6 @@ void ScalarConverter::ConvertToFloat(std::string str){
 			std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
 		else
 			std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-	//	std::cout << "end = " << end << std::endl;
 	}
 
 }
