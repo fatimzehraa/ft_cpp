@@ -3,9 +3,9 @@ CFLAGS = -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address
 
 
 #inc = -I./
-OBJ = main.o template.o
-INC = template.hpp
-NAME = template
+OBJ = main.o
+INC = array.hpp
+NAME = array
 
 all: $(NAME)
 
