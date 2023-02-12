@@ -6,34 +6,35 @@ template<class oo>
 class Array
 {
 private:
-	oo elements[];
+	oo *elements;
 	
 public:
 	Array(){
 		std::cout << "enpty Array constructed" << std::endl;
 	}
 	Array(unsigned int n){
-		for (size_t i = 0; i < n; i++) {
-			elements[i] = new oo();
-
-		}
+		elements = new oo();
+		std::cout << "full array constructed" << std::endl;
 	}
 	Array(const Array & array){
-	
+		this = array;
+		std::cout << "copy constructed array" << std::endl;
 	}
 	Array &operator=(const Array &array){
-
+		if (this != &array)
+			this->elements = array.elements;
 	}
 	~Array();
 
 };
 
+/*
 Array::Array()
 {
 }
 
 Array::~Array()
 {
-}
+}*/
 
 #endif
