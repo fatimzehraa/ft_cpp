@@ -1,19 +1,25 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
+#include <exception>
 #include <iostream>
+#include <new>
+#include <stdexcept>
 
-template<class oo>
+template<class T>
 class Array
 {
 private:
-	oo *elements;
+	T *elements;
+	int n;
 	
 public:
 	Array(){
-		std::cout << "enpty Array constructed" << std::endl;
+		this->elements = NULL;
+		std::cout << "empty Array constructed" << std::endl;
 	}
 	Array(unsigned int n){
-		elements = new oo();
+		elements = new T[n];
+		this->n = n;
 		std::cout << "full array constructed" << std::endl;
 	}
 	Array(const Array & array){
@@ -21,20 +27,32 @@ public:
 		std::cout << "copy constructed array" << std::endl;
 	}
 	Array &operator=(const Array &array){
-		if (this != &array)
-			this->elements = array.elements;
+		if (this != &array){
+			this->n = array.n;
+			for (size_t i = 0; i < n; i++) {
+				this->elements[i] = array.elements[i];
+			}
+		}
+		std::cout << "array has been assigned" << std::endl;
 	}
-	~Array();
+	int size() const {
+		return n;
+	}
+	T &operator [](int _n){
+		if (_n < 0 || _n > this->n)
+			throw std::out_of_range("out of range index");
+		return this->elements[_n];
+	}
+	const T &operator [](int _n) const {
+		if (_n < 0 || _n > this->n)
+			throw std::out_of_range("out of range index");
+		return this->elements[_n];
+	}
+	~Array(){
+		delete [] elements;
+		std::cout << "array destructed" << std::endl;
+	}
 
 };
-
-/*
-Array::Array()
-{
-}
-
-Array::~Array()
-{
-}*/
 
 #endif
