@@ -2,10 +2,13 @@
 #include <algorithm>
 #include <cstdarg>
 #include <stdexcept>
+#include <numeric>
+#include <vector>
 
 Span::Span(unsigned int N)
 {
-	this->N = N;
+	this->capacity = N;
+	this->size = 0;
 	std::cout << "Span constructor called" << std::endl;
 }
 
@@ -17,33 +20,44 @@ Span::Span(const Span &span)
 
 Span &Span::operator=(const Span &span)
 {
-	this->N = span.N;
+	this->capacity = span.capacity;
+	this->size = span.size;
 	this->vec = span.vec;
 	std::cout << "Span assigned called" << std::endl;
 	return *this;
 }
 
-void Span::addNumber(unsigned int N,...){
-	if (N > this->N)
+void Span::addNumber(int n){
+	if (capacity - size == 0)
 		throw std::out_of_range("out of range");
-	va_list args;
-	va_start(args, N);
-	unsigned int i = 0;
-	while (i < N) {
-		vec.push_back(va_arg(args, int));
-		i++;
-	}
-	va_end(args);
+	vec.push_back(n);
+	size++;
 }
 
 int Span::longestSpan(){
-	// still needs to throw exception when N <= 1
+	if (this->size <= 1)
+		throw cannot_calculate_exception();
 	int bigger = *std::max_element(vec.begin(), vec.end());
 	int smaller = *std::min_element(vec.begin(), vec.end());
 	return bigger - smaller;
 }
 
-int Span::shortestSpan(){} // std::adjacent_difference 
+int diff(int x, int y){return abs(x - y);}
+
+int Span::shortestSpan(){
+	if (this->size <= 1)
+		throw cannot_calculate_exception();
+	std::vector<int> tmp(vec);
+	std::adjacent_difference(tmp.begin(), tmp.end(), tmp.begin(), diff);
+	return *std::min_element(tmp.begin() + 1, tmp.end());
+} // std::adjacent_difference 
+
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end){
+	while (begin != end) {
+		addNumber(*begin);
+		begin++;
+	}
+}
 
 Span::~Span()
 {

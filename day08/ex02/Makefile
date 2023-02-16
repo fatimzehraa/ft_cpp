@@ -3,9 +3,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 # -g -fsanitize=address
 
 
 #inc = -I./
-OBJ = main.o Span.o
-INC = Span.hpp
-NAME = span
+OBJ = main.o
+INC = MutantStack.hpp
+NAME = MutantStack
 
 all: $(NAME)
 
