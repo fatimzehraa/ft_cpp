@@ -7,22 +7,29 @@
 #include <utility>
 #include <sstream>
 #include <algorithm>
+#include <limits>
 class BitcoinExchange
 {
 public:
-	BitcoinExchange(std::string _database, std::string _input);
+	BitcoinExchange(std::map<std::string, float>);
 	BitcoinExchange(BitcoinExchange&);
 	BitcoinExchange(const BitcoinExchange &);
 	BitcoinExchange&operator=(const BitcoinExchange&);
-	std::map<std::string, float> parse_data();
-	std::pair<std::string, float> give_key(std::map<std::string, float> map, std::string key);
+	void set_date(std::string date);
+	void set_value(double value);
+	std::string get_date();
+	double get_value();
+	int test(std::string date, std::string pipe, double value);
+	int	do_line(std::string line);
+	float get_exchange_rate();
+	std::map<std::string, float>::iterator give_key(std::map<std::string, float> map, std::string key);
 	~BitcoinExchange();
  
 private:
 	std::map<std::string, float> map;
-	std::ifstream database;
-	std::ifstream input;
-	std::pair<std::string, float> p;
+	std::string date;
+	double value;
+//	std::pair<std::string, float> p;
 
 };
 #endif
