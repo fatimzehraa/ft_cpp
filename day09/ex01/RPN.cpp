@@ -1,4 +1,6 @@
 #include "RPN.hpp"
+#include <iostream>
+#include <sstream>
 
 RPN::RPN(std::string str)
 {
@@ -21,38 +23,59 @@ RPN &RPN::operator=(const RPN &old_obj)
 	return *this;
 }
 
-float RPN::calculate()
+void RPN::do_op(char op)
 {
-	std::stringstream ss(_str);
-	ss >> _num1;
-	_stack.push(_num1);
-	while (ss >> _num2)
+	if (op == '+')
+		_result = _num2 + _num1;
+	else if (op == '-')
+		_result = _num2 - _num1;
+	else if (op == '*')
+		_result = _num2 * _num1;
+	else if (op == '/')
 	{
-		_result = _num2;
-		ss >> _op;
-		if (_op == '+')
-			_result = _stack.top() + _result;
-		else if (_op == '-')
-			_result = _stack.top() - _result;
-		else if (_op == '*')
-			_result = _stack.top() * _result;
-		else if (_op == '/')
-		{
-			if (_result == 0)
-			{
-				std::cout << "Error" << std::endl;
-				exit(1);
-			}
-			_result = _stack.top() / _result;
-		}
-		else
+		if (_num1 == 0)
 		{
 			std::cout << "Error" << std::endl;
 			exit(1);
 		}
-		_stack.pop();
-		_stack.push(_result);
+		_result = _num2 / _num1;
 	}
+	else
+	{
+		std::cout << "Error" << std::endl;
+		exit(1);
+	}
+	_stack.push(_result);
+}
+
+float RPN::calculate()
+{
+	std::stringstream ss(_str);
+
+	while (ss >> n)
+	{
+		if (isdigit(n))
+			_stack.push(n - '0');
+		else {
+			if (_stack.size() < 2)
+			{
+				std::cout << "Error" << std::endl;
+				exit(1);
+			}
+			_num1 = _stack.top();
+			_stack.pop();
+			_num2 = _stack.top();
+			_stack.pop();
+			do_op(n);
+		}
+	}
+	if (_stack.size() != 1)
+	{
+		std::cout << "Error" << std::endl;
+		exit(1);
+	}
+	if (_stack.size() == 1)
+		_result = _stack.top();
 	return _result;
 }
 

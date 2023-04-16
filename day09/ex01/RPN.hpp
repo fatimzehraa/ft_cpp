@@ -11,6 +11,7 @@ public:
 	RPN(RPN&);
 	RPN(const RPN &);
 	RPN&operator=(const RPN&);
+	void do_op(char);
 	float calculate_op();
 	float calculate();
 	~RPN();
@@ -21,6 +22,7 @@ private:
 	float _result;
 	float _num1;
 	float _num2;
+	char n;
 	char _op;
 };
 #endif
