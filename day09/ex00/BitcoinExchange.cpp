@@ -1,5 +1,6 @@
 #include "BitcoinExchange.hpp"
 #include <climits>
+#include <sstream>
 
 BitcoinExchange::BitcoinExchange(std::map<std::string, float> _map)
 {
@@ -38,6 +39,27 @@ double BitcoinExchange::get_value()
 	return this->value;
 }
 
+#define DATE_EXPR "NNNN-NN-NN"
+
+int BitcoinExchange::valid_date(std::string date)
+{
+	unsigned long i = 0;
+	unsigned long j = 0;
+
+	while (i < strlen(DATE_EXPR) && j < date.length())
+	{
+		if (date[j] != '-' && !isdigit(date[j]))
+			return 0;
+		if (DATE_EXPR[i] == 'N' && !isdigit(date[j]))
+			return 0;
+		i++;
+		j++;
+	}
+	if (date[j] != '\0' || DATE_EXPR[i] != '\0')
+		return 0;
+	return 1;
+}
+
 int BitcoinExchange::test(std::string date, std::string pipe, double value)
 {
 	if (pipe != "|")
@@ -50,12 +72,12 @@ int BitcoinExchange::test(std::string date, std::string pipe, double value)
 		std::cout << "Error: not a positive number." << std::endl;
 		return 0;
 	}
-	if (value > INT_MAX)
+	if (value > 1000)
 	{
 		std::cout << "Error: too big number." << std::endl;
 		return 0;
 	}
-	if (date.empty() || date.length() != 10)
+	if (date.empty() || !valid_date(date))
 	{
 		std::cout << "Error: invalid date." << std::endl;
 		return 0;
@@ -90,8 +112,6 @@ int	BitcoinExchange::do_line(std::string line)
 }
 std::map<std::string, float>::iterator BitcoinExchange::give_key(std::map<std::string, float> map, std::string key)
 {
-//	std::pair<std::string, float> p;
-
 	std::map<std::string, float>::iterator it = map.lower_bound(key);
 	return it;
 }
@@ -101,9 +121,5 @@ float BitcoinExchange::get_exchange_rate()
 	std::map<std::string, float>::iterator it = give_key(this->map, this->date);
 	return it->second * this->value;
 }
-/* {
-	std::pair<std::string, float> p = give_key(this->map, this->date);
-	return p.second * std::stof(this->value); //stof forbidden
-} */
 
 BitcoinExchange::~BitcoinExchange() {}

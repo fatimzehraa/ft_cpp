@@ -19,6 +19,7 @@ public:
 	void set_value(double value);
 	std::string get_date();
 	double get_value();
+	int valid_date(std::string date);
 	int test(std::string date, std::string pipe, double value);
 	int	do_line(std::string line);
 	float get_exchange_rate();
