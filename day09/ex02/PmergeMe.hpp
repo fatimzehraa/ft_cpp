@@ -7,6 +7,7 @@
 
 typedef std::chrono::steady_clock::time_point time_point;
 typedef std::vector<int>::iterator iterator;
+typedef std::list<int>::iterator lst_iterator;
 
 class PmergeMe
 {
@@ -15,17 +16,25 @@ public:
 	PmergeMe(PmergeMe&);
 	PmergeMe(const PmergeMe &);
 	PmergeMe&operator=(const PmergeMe&);
-	std::vector<int> merge_insert_vector(int *array, int size);
-	std::list<int> merge_insert_list(int *array, int size);
-	void set_vec_duration(double duration);
-	void set_lst_duration(double duration);
+	std::vector<int> insert_sort(std::vector<int> _vec);
+	std::vector<int> merge(std::vector<int> left, std::vector<int> right);
+	std::vector<int> merge_insert_sort(std::vector<int> vec);
+	std::list<int> insert_sort(std::list<int> _lst);
+	std::list<int> merge(std::list<int> left, std::list<int> right);
+	std::list<int> merge_insert_sort(std::list<int> lst);
+	/* void set_vec_duration(double duration);
+	void set_lst_duration(double duration); */
 	double get_vec_duration();
+	void set_vec_duration(double duration);
 	double get_lst_duration();
+	void set_lst_duration(double duration);
+	std::vector<int> get_vector();
+	std::list<int> get_list();
 	~PmergeMe();
  
 private:
-	int *_array;
-	int _size;
+	// int *_array;
+	// int _size;
 	std::vector<int> _vector;
 	std::list<int> _list;
 	double vec_duration;

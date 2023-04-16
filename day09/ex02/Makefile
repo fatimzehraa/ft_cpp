@@ -1,8 +1,8 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-OBJS = main.o #PmergeMe.o
-INC = #PmergeMe.hpp
+OBJS = main.o PmergeMe.o
+INC = PmergeMe.hpp
 NAME = PmergeMe
 
 all: $(NAME)
